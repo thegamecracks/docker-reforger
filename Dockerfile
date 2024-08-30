@@ -78,8 +78,7 @@ WORKDIR /reforger
 
 VOLUME /steamcmd
 VOLUME /home/profile
-VOLUME /reforger/Configs
-VOLUME /reforger/workshop
+VOLUME /reforger
 
 EXPOSE 2001/udp
 EXPOSE 17777/udp

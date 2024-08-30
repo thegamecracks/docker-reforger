@@ -10,9 +10,9 @@ An Arma Reforger dedicated server. Updates to the latest version every time it i
     docker create \
         --name=reforger-server \
         -p 2001:2001/udp \
-        -v path/to/configs:/reforger/Configs \
         -v path/to/profiles:/home/profile \
-        -v path/to/workshop:/reforger/workshop \
+        -v path/to/reforger:/reforger \
+        -v path/to/reforger/configs:/reforger/Configs \
         -e SERVER_PUBLIC_ADDRESS="public ip" \
         -e GAME_NAME="My Docker Reforger Server" \
         ghcr.io/acemod/arma-reforger:latest
@@ -32,7 +32,7 @@ Check [the Dockerfile](Dockerfile#L32-L67), more docs will come later.
 
 By default the configs are generated from the ENV variables in the dockerfile. After the first run the file can be expanded with additional options manually, but the fields will always be overwritten by the ENV variables.
 
-Alternatively, change the `ARMA_CONFIG` variable to a file present in the `Configs` volume. It will be used without modification.
+Alternatively, change the `ARMA_CONFIG` variable to a file present in the `/reforger/Configs` volume. It will be used without modification.
 
 ### Experimental server
 
@@ -56,7 +56,7 @@ Path to a JSON file that contains array of mod objects.
 
 ```sh
 -v ${PWD}/mods_file.json:/mods_file.json
--e GAME_MODS_JSON_FILE_PATH="/mods_file.json" 
+-e GAME_MODS_JSON_FILE_PATH="/mods_file.json"
 ```
 
 ```json
