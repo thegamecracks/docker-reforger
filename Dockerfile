@@ -1,7 +1,7 @@
 FROM debian:bullseye-slim
 
-LABEL maintainer="ACE Team - https://github.com/acemod"
-LABEL org.opencontainers.image.source=https://github.com/acemod/docker-reforger
+LABEL maintainer="thegamecracks - https://github.com/thegamecracks"
+LABEL org.opencontainers.image.source=https://github.com/thegamecracks/docker-reforger
 
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 RUN apt-get update \
@@ -25,9 +25,7 @@ RUN apt-get update \
     && \
     rm -rf /var/lib/apt/lists/* \
     && \
-    mkdir -p /steamcmd \
-    && \
-    wget -qO- 'https://steamcdn-a.akamaihd.net/client/installer/steamcmd_linux.tar.gz' | tar zxf - -C /steamcmd
+    mkdir /steamcmd
 
 ENV STEAM_USER=""
 ENV STEAM_PASSWORD=""

@@ -30,7 +30,19 @@ def bool_str(text):
     return text.lower() == "true"
 
 
+def maybe_install_steamcmd() -> None:
+    if os.path.exists("/steamcmd/steamcmd.sh"):
+        return
+
+    subprocess.check_call(
+        "wget -qO- 'https://steamcdn-a.akamaihd.net/client/installer/steamcmd_linux.tar.gz' "
+        "| tar zxf - -C /steamcmd",
+        shell=True,
+    )
+
+
 if os.environ["SKIP_INSTALL"] in ["", "false"]:
+    maybe_install_steamcmd()
     steamcmd = ["/steamcmd/steamcmd.sh"]
     steamcmd.extend(["+force_install_dir", "/reforger"])
     if env_defined("STEAM_USER"):
